@@ -1,30 +1,36 @@
-const input = document.getElementById('input-field');
-const todoList = document.getElementById('list');
-const form = document.querySelector('.todoform');
+const input = document.getElementById("input-field");
+const todoList = document.getElementById("list");
+const form = document.querySelector(".todoform");
 
 let current = new Date();
-let cDate = current.getFullYear() + '-' + (current.getMonth() + 1) + '-' + current.getDate();
-let cTime = current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
-let dateTime = cDate + ' | ' + cTime;
-let dT = document.getElementById('date-time').innerHTM = dateTime;
+let cDate =
+  current.getFullYear() +
+  "-" +
+  (current.getMonth() + 1) +
+  "-" +
+  current.getDate();
+let cTime =
+  current.getHours() + ":" + current.getMinutes() + ":" + current.getSeconds();
+let dateTime = cDate + " | " + cTime;
+let dT = (document.getElementById("date-time").innerHTM = dateTime);
 
 let apiData;
 // let list_todo = apiData;
 // let delClicked = 0;
 
-readTodo()
- function readTodo(){
+readTodo();
+function readTodo() {
+  fetch("https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      // if (localStorage.getItem('list_todo')) {
+      //   list_todo = JSON.parse(localStorage.getItem('list_todo'));
+      // } else list_todo = [];
 
-  fetch('https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos').then(response => {
-  return response.json();
-}).then(data=>{
-
-
-  // if (localStorage.getItem('list_todo')) {
-  //   list_todo = JSON.parse(localStorage.getItem('list_todo'));
-  // } else list_todo = [];
-
-  apiData = data.map(todo =>`<div id="${todo.id}"> 
+      apiData = data.map(
+        (todo) => `<div id="${todo.id}"> 
   <div class="box">
   <div class= "nameDate">
   <div class="name">${todo.name}</div>
@@ -34,12 +40,13 @@ readTodo()
   <button id="delBtn-${todo.id}" onclick="delCallBack(${todo.id})" class="delBtn" type="button"><i class="fa-regular fa-trash-can"  style="pointer-events: none;"></i></button>
   </div>
   </div>
-  </div>`);
-  
-  document.querySelector("#list").innerHTML= apiData.join("");
-})
+  </div>`
+      );
 
-  .catch(err=> console.log('fetch error', err));
+      document.querySelector("#list").innerHTML = apiData.join("");
+    })
+
+    .catch((err) => console.log("fetch error", err));
   // todoList.innerHTML = arrayResult;
   // const delBtns = document.querySelectorAll('.delBtn');
   // const editBtns = document.querySelectorAll('.editBtn');
@@ -50,46 +57,42 @@ readTodo()
   // editBtns.forEach((editBtn) => editBtn.addEventListener("click", editCallBack));
 }
 
- form.addEventListener('submit',(e)=>{
-
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   if (input.value === "") return;
   const newTodo = {
-    id:Date.now(),
+    id: Date.now(),
     name: input.value,
-    dateTime: dT
+    dateTime: dT,
   };
 
-  input.value ='';
+  input.value = "";
   // list_todo.push(newTodo);
   // localStorage.setItem('list_todo',JSON.stringify(list_todo));
   readTodo();
-  fetch('https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos', {
-      method: 'POST',
-      headers: {
-          "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTodo),
+  fetch("https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newTodo),
   })
-  .then(response => response.json())
-  .then(response => console.log(JSON.stringify(response)))
-  .then((response) => readTodo());
+    .then((response) => response.json())
+    .then((response) => console.log(JSON.stringify(response)))
+    .then((response) => readTodo());
+});
 
- });
- 
- function delCallBack(id) {
+function delCallBack(id) {
   console.log("i am deleting");
   fetch(`https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos/${id}`, {
-  method: 'DELETE',
-   
- })
- .then(()=>{
-    readTodo()
-})
-.catch((err)=>{
-    console.error(err);
-})
-
+    method: "DELETE",
+  })
+    .then(() => {
+      readTodo();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 //   list_todo = list_todo.filter(todo => todo.id != event.target.id.split('-')[1]);
 //   // localStorage.setItem("list_todo", JSON.stringify(list_todo));
@@ -109,37 +112,33 @@ function editCallBack(id) {
 
   // updatePopupName.value = singleTodoEl.name;
   updatePopupOverlay.addEventListener("click", () =>
-  updatePopup.classList.remove("active")
-
-  
+    updatePopup.classList.remove("active")
   );
 
   document.querySelector("#updateForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    // const updatedTodoElement = { ...singleTodoEl, name: updatePopupName.value };
+    // const index = list_todo.findIndex((todo) => todo.id === +updateTodoId);
+    // list_todo.splice(index, 1, updatedTodoElement);
+    // localStorage.setItem("list_todo", JSON.stringify(list_todo));
+    // updatePopup.classList.remove("active");
 
-  event.preventDefault();
-  // const updatedTodoElement = { ...singleTodoEl, name: updatePopupName.value };
-  // const index = list_todo.findIndex((todo) => todo.id === +updateTodoId);
-  // list_todo.splice(index, 1, updatedTodoElement);
-  // localStorage.setItem("list_todo", JSON.stringify(list_todo));
-  // updatePopup.classList.remove("active");
+    let input = document.getElementById("name");
+    console.log(input.value);
+    let newTodo = { id: Date.now(), name: input.value };
+    console.log(newTodo);
 
-  let input = document.getElementById("name");
-  console.log(input.value);
-  let newTodo = {  id: Date.now(), name: input.value};
-  console.log(newTodo);
-
-
-  fetch(`https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos/${id}`, {
-    method: 'PUT',
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(newTodo),
-  })
-    .then((response) => response.json(response))
-    .then((response) => updatePopup.classList.remove("active"))
-    .then((response) => readTodo())
-    // .then((response) =>(id=null))
-    .then((response)=>(input.value=""));
+    fetch(`https://63b27acf0d51f5b2972a33a9.mockapi.io/Todos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newTodo),
+    })
+      .then((response) => response.json(response))
+      .then((response) => updatePopup.classList.remove("active"))
+      .then((response) => readTodo())
+      // .then((response) =>(id=null))
+      .then((response) => (input.value = ""));
   });
 }
