@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./task1.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="updatePopup">
+        <div class="overlay"></div>
+        <div class="boxPopup">
+          <form id="updateForm">
+            <h3>Update Task</h3>
+            <input
+              type="text"
+              class="input"
+              id="name"
+              placeholder="Type here ..."
+            />
+            <button id="my-button" type="submit">
+              <i class="fa-sharp fa-solid fa-plus"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <form class="todoform">
+        <div class="title">
+          <h3>Things To Do</h3>
+        </div>
+        <div class="add-task">
+          <input
+            type="text"
+            id="input-field"
+            class="input"
+            placeholder="Type here ..."
+            value=""
+          />
+          <button id="my-button" type="submit">
+            <i class="fa-sharp fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div id="list">
+          <div id="date-time"></div>
+        </div>
+      </form>
+    </div>
+    <script src="task1.js"></script>
+  </body>
+</html>

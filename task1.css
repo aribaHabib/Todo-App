@@ -1,0 +1,129 @@
+body{
+    box-sizing: border-box;
+    background-image: linear-gradient(to right, #C539B4,#7743DB, #8D9EFF);
+    background-image:no-repeat;
+    background-attachment: fixed;
+}
+.todoform{
+    box-shadow: 10px 10px #D23369;
+    border-radius: 8px;
+    display:flex;
+    flex-direction: column;
+    background: #edf0f5;
+    margin: auto;
+    margin-top: 130px;
+    width: 240px; 
+    min-height: 25rem ;
+    box-shadow: palevioletred (0, 0, 0, 0.35) 0px 5px 15px;
+}
+.title{
+    font-size: 18px;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    text-align: center;
+    padding: 12px;
+}
+.add-task{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.input{
+    border-top: none;
+    border-bottom: none;
+    border-right: none;
+    border-left: 4px solid #D23369;
+    border-radius: 1px;
+    background: lightblue;
+    height: 20px;
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+#my-button{
+    border-radius: 15px;
+    background-color: #D23369;
+    height: 26px;
+    width: 25px;
+    color: white;
+    border: none;
+    font-size: 10px; 
+}
+#list{ 
+    background: lightblue;
+    padding: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    height: min-content;
+    margin-bottom: 25px;
+}
+.box{
+    background-color: white;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    padding: 7px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.name{
+    font-family: Calibri;
+    font-weight: bold;
+}
+#date-time{
+    color: gray;
+    font-size: 12px;
+   
+}
+.nameDate{
+    display: flex;
+    flex-direction: column;
+}
+.buttons{ 
+    display: flex;
+    margin-top: 7px;
+}
+.delBtn{
+    height: 20px;
+    width: 20px;
+    border: none;
+    color:red;
+    background-color: white;
+    cursor: pointer;
+}
+.editBtn{
+    height: 20px;
+    width: 20px;
+    border: none;
+    color:red;
+    background-color: white;
+    cursor: pointer;
+}
+.updatePopup{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: none;
+} 
+.updatePopup.active{
+    display: flex;
+   
+}
+.updatePopup .overlay{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.293);
+}
+.updatePopup .boxPopup{
+    padding: 1rem;
+    border-radius: 1rem;
+    height: 200px;
+    width: 300px;
+    position: relative;
+    background: white;
+}
+.updatePopup #updateForm{
+   text-align: center;
+}
